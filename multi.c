@@ -9,7 +9,7 @@
 #define DCE_COMPAT
 
 /*----------- Function Prototypes ------------------*/
-void* outputMsg (void*);
+void* outputMsg(void*);
 
 /*------------ Mutex Variables ---------------------*/
 pthread_mutex_t printfLock = PTHREAD_MUTEX_INITIALIZER;
@@ -21,11 +21,11 @@ int main (void)
   const char* msg1 = "Hello ";
   const char* msg2 = "World ";
 
-  pthread_create (&thread1, NULL, outputMsg, (void*)msg1);
-  pthread_create (&thread2, NULL, outputMsg, (void*)msg2);
+  pthread_create(&thread1, NULL, outputMsg, (void*)msg1);
+  pthread_create(&thread2, NULL, outputMsg, (void*)msg2);
 
-  pthread_join (thread1, NULL);
-  pthread_join (thread2, NULL);
+  pthread_join(thread1, NULL);
+  pthread_join(thread2, NULL);
 
   printf ("\n");
   return 0;
@@ -38,9 +38,10 @@ void* outputMsg (void* msg)
 
   for (i = 0; i < 10; ++i)
   {
-    pthread_mutex_lock (&printfLock);
-    printf ((char*)msg);
-    pthread_mutex_unlock (&printfLock);
+    pthread_mutex_lock(&printfLock);
+    printf("%s",(char*)msg);
+    printf ("\n");
+    pthread_mutex_unlock(&printfLock);
   }
   return NULL;
 }
